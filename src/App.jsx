@@ -48,7 +48,7 @@ class App extends Component {
       case authenticated:
         renderLogin = (
           <p id='message'>
-            Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
+           Welcome back
           </p>
         );
         break;
