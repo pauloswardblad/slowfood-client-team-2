@@ -41,13 +41,15 @@ class App extends Component {
             >
               Login
             </button>
-            <p>{message}</p>
+            <p id="message">{message}</p>
           </>
         );
         break;
       case authenticated:
         renderLogin = (
-          <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+          <p id='message'>
+            Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
+          </p>
         );
         break;
     }
