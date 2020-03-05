@@ -8,9 +8,6 @@ describe("User can log in", () => {
           method: "POST",
           url: "http://localhost:3000/api/v1/auth/sign_in",
           response: "fixture:login.json",
-          headers: {
-              uid: "user@mail.com"
-          }
       });
       cy.get("#login").click();
       cy.get("#login-form").within(() => {
