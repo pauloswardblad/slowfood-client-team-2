@@ -5,10 +5,8 @@ import { authenticate } from './modules/auth';
 class App extends Component {
   state = {
     renderLoginForm: false,
-    renderLoginForm: false,
     authenticated: false,
     message: ""
-
   };
 
   onLogin = async e => {
@@ -23,12 +21,11 @@ class App extends Component {
       this.setState({ message: response.message, renderLoginForm: false });
     }
   };
-  
-  
+
   render() {
     const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
-    switch(true) {
+    switch (true) {
       case renderLoginForm && !authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
@@ -48,7 +45,7 @@ class App extends Component {
       case authenticated:
         renderLogin = (
           <p id='message'>
-           Welcome back
+            Welcome back
           </p>
         );
         break;
