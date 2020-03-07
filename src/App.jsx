@@ -11,7 +11,7 @@ class App extends Component {
     message: ""
   };
 
-  onLogin = async e => {
+  onLogin = async e => {;
     e.preventDefault();
     const response = await authenticate(
       e.target.email.value,
@@ -50,13 +50,15 @@ class App extends Component {
 
     switch (true) {
       case renderLoginForm && !authenticated:
-        renderLogin = <LoginForm submitFormHandler={this.onSignIn} />;
+        renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
       case renderRegistrationForm && !authenticated:
-        renderRegistration = <RegistrationForm submitFormHandler={this.onSignUp} />;
+        renderRegistration = (
+          <RegistrationForm submitFormHandler={this.onSignUp} />
+        );
         break;
 
-      case !authenticated:
+      case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
             <button
@@ -72,13 +74,17 @@ class App extends Component {
             >
               Create Account
             </button>
-
             <p id="message">{message}</p>
           </>
         );
         break;
       case authenticated:
-        renderLogin = <p id="message">Welcome back</p>;
+        renderLogin= (
+          <p id="message">
+            Welcome back
+          </p>
+        );
+
         break;
     }
 
