@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LoginForm from "./Components/LoginForm";
-import { authenticate } from './modules/auth';
+import { authenticate } from "./modules/auth";
+import RegistrationForm from "./Components/RegistrationForm";
 
 class App extends Component {
   state = {
@@ -23,14 +24,41 @@ class App extends Component {
     }
   };
 
+  onRegistration = async e => {
+    e.preventDefault();
+    const response = await authenticate(
+      e.target.name.value,
+      e.target.email.value,
+      e.target.password.value,
+      e.target.confirm_password.value
+    );
+    if (response.authenticated) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({
+        message: response.message,
+        renderRegistrationForm: false
+      });
+    }
+  };
+
   render() {
-    const { renderLoginForm, authenticated, message } = this.state;
+    const {
+      renderLoginForm,
+      renderRegistrationForm,
+      authenticated,
+      message
+    } = this.state;
     let renderLogin;
+    let renderRegistration;
     switch (true) {
-      case renderLoginForm && !authenticated:
-        renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
+      case renderRegistrationForm && !authenticated:
+        renderRegistration = <RegistrationForm submitFormHandler={this.onSignUp} />;
         break;
       case !renderLoginForm && !authenticated:
+        renderLogin = <LoginForm submitFormHandler={this.onSignIn} />;
+        break;
+      case !authenticated:
         renderLogin = (
           <>
             <button
@@ -39,6 +67,7 @@ class App extends Component {
             >
               Login
             </button>
+
             <button
               id="register"
               onClick={() => this.setState({ renderRegistrationForm: true })}
@@ -51,17 +80,14 @@ class App extends Component {
         );
         break;
       case authenticated:
-        renderLogin = (
-          <p id='message'>
-            Welcome back
-          </p>
-        );
+        renderLogin = <p id="message">Welcome back</p>;
         break;
     }
 
     return (
       <>
         {renderLogin}
+        {renderRegistration}
       </>
     );
   }
