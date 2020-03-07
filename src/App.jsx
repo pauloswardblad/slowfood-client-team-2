@@ -44,12 +44,7 @@ class App extends Component {
   };
 
   render() {
-    const {
-      renderLoginForm,
-      renderRegistrationForm,
-      authenticated,
-      message
-    } = this.state;
+    const { renderLoginForm, renderRegistrationForm, authenticated, message } = this.state;
     let renderLogin;
     let renderRegistration;
 

@@ -18,7 +18,7 @@ describe("User can create account", () => {
         cy.get("#name").type("Lau")
         cy.get("#email").type("user@mail.com");
         cy.get("#password").type("password");
-        cy.get("#confirm_password").type("password")
+        cy.get("#confirm-password").type("password")
         cy.get("button")
           .contains("Create")
           .click();
@@ -41,7 +41,7 @@ describe("User can create account", () => {
             cy.get("#name").type("Lau");
             cy.get("#email").type("user@mail.com");
             cy.get("#password").type("password");
-            cy.get("#confirm_password").type("wrongpassword");
+            cy.get("#confirm-password").type("wrongpassword");
             cy.get('button').contains('Create').click()
         });
         cy.get("#message").should("contain", "Invalid login credentials. Please try again.");

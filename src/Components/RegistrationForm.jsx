@@ -13,7 +13,7 @@ const RegistrationForm = ({ submitFormHandler }) => {
       <input name="password" type="password" id="password"></input>
 
       <label>Password Confirmation</label>
-      <input name="password" type="password" id="password"></input>
+      <input name="password" type="password" id="confirm-password"></input>
 
       <button id="create-button">Create</button>
     </form>
