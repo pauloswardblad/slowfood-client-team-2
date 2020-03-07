@@ -4,6 +4,7 @@ import { authenticate } from './modules/auth';
 
 class App extends Component {
   state = {
+    renderRegistrationForm: false,
     renderLoginForm: false,
     authenticated: false,
     message: ""
@@ -38,6 +39,13 @@ class App extends Component {
             >
               Login
             </button>
+            <button
+              id="register"
+              onClick={() => this.setState({ renderRegistrationForm: true })}
+            >
+              Create Account
+            </button>
+
             <p id="message">{message}</p>
           </>
         );

@@ -13,8 +13,8 @@ describe("User can create account", () => {
         }
       });
 
-      cy.get("#login").click();
-      cy.get("#login-form").within(() => {
+      cy.get("#register").click();
+      cy.get("#register-form").within(() => {
         cy.get("#name").type("Lau")
         cy.get("#email").type("user@mail.com");
         cy.get("#password").type("password");
@@ -36,8 +36,8 @@ describe("User can create account", () => {
                 success: false
             }
         });
-        cy.get("#login").click();
-        cy.get("#login-form").within(() => {
+        cy.get("#register").click();
+        cy.get("#register-form").within(() => {
             cy.get("#name").type("Lau");
             cy.get("#email").type("user@mail.com");
             cy.get("#password").type("password");
