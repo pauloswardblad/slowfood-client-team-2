@@ -37,6 +37,7 @@ class App extends Component {
     } else {
       this.setState({
         message: response.message,
+        renderLoginForm: false,
         renderRegistrationForm: false
       });
     }
@@ -51,13 +52,15 @@ class App extends Component {
     } = this.state;
     let renderLogin;
     let renderRegistration;
+
     switch (true) {
+      case renderLoginForm && !authenticated:
+        renderLogin = <LoginForm submitFormHandler={this.onSignIn} />;
+        break;
       case renderRegistrationForm && !authenticated:
         renderRegistration = <RegistrationForm submitFormHandler={this.onSignUp} />;
         break;
-      case !renderLoginForm && !authenticated:
-        renderLogin = <LoginForm submitFormHandler={this.onSignIn} />;
-        break;
+
       case !authenticated:
         renderLogin = (
           <>
